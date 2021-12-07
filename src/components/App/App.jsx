@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import shortid from "shortid";
 import ContactForm from "../ContactForm/ContactForm.jsx";
 import Filter from "../Filter/Filter.jsx";
 import ContactList from "../ContactList/ContactList.jsx";
-import shortid from "shortid";
 import s from "./App.module.css";
 
 class App extends Component {
@@ -44,6 +44,7 @@ class App extends Component {
 
   filterContacts = () => {
     const { filter, contacts } = this.state;
+
     return contacts.filter(({ name }) =>
       name.toLowerCase().includes(filter.toLowerCase())
     );
@@ -59,11 +60,16 @@ class App extends Component {
     const filteredContacts = this.filterContacts();
     return (
       <>
-        <h1 className={s.title}>Phonebook</h1>
-        <ContactForm onSubmit={this.addNewContact} />
-        <h2 className={s.title}>Contacts</h2>
-        <Filter filter={filter} onChange={this.updateFilter} />
-        <ContactList contacts={filteredContacts} onClick={this.deleteContact} />
+        <div className={s.container}>
+          <h1 className={s.title}>Phonebook</h1>
+          <ContactForm onSubmit={this.addNewContact} />
+          <h2 className={s.title}>Contacts</h2>
+          <Filter filter={filter} onChange={this.updateFilter} />
+          <ContactList
+            contacts={filteredContacts}
+            onClick={this.deleteContact}
+          />
+        </div>
       </>
     );
   }

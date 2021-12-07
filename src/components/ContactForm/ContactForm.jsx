@@ -14,21 +14,13 @@ class ContactForm extends Component {
   };
 
   handleSubmit = (event) => {
-    const { name, number } = this.state;
-    const newContact = { name, number };
-    event.preventDefault();
-    this.props.onSubmit(newContact);
-    this.reset();
-  };
-
-  handleSubmit = (event) => {
     event.preventDefault();
     const { name, number } = this.state;
     this.props.onSubmit(name, number);
-    this.reset();
+    this.resetState();
   };
 
-  reset = () => {
+  resetState = () => {
     this.setState({ name: "", number: "" });
   };
 
